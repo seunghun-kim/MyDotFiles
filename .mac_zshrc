@@ -48,7 +48,7 @@ prompt_zsh_battery_level() {
 	   color='%F{green}' ;
 	fi
 
-	echo -n "%{$color%}$symbol" ;
+	echo -n "${percentage}%% %{$color%}$symbol" ;
 }
 
 POWERLEVEL9K_CUSTOM_BATTERY_STATUS="prompt_zsh_battery_level"
