@@ -117,4 +117,4 @@ source ~/.fonts/*.sh
 now="$(date +"%F %R")"
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias zshbackup="pushd .; pushd ~/Documents/MyLinuxPreferences/; git add linux-zshrc; git commit -m "Linux autobackup at ${now}"; popd"
+alias zshbackup="pushd; cd ~/Documents/MyLinuxPreferences/; git add linux-zshrc; git commit -m "Linux .zshrc autobackup at ${now}"; git push; popd"
