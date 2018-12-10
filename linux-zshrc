@@ -116,4 +116,6 @@ source ~/.fonts/*.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+alias recmake="rm -rf CMakeFiles CMakeCache.txt cmake_install.cmake; cmake CMakeLists.txt"
+alias hyupsoscp="scp -r ~/Documents/A20_hyupso/* root@192.168.0.32:~/work/HyupSo_Node"
 # alias zshbackup="pushd; cd ~/Documents/MyLinuxPreferences/; git pull; git add linux-zshrc; git commit -m "Linux .zshrc autobackup at ${now}"; git push; popd"
