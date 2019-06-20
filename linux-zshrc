@@ -1,8 +1,18 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/home/seunghun/stlink/build/Release/:$PATH
+export PATH=$HOME:/bin:/sbin:/usr/local/bin/:/usr/include/
+
+# ST-Link Utility
+export PATH=$PATH:/home/seunghun/stlink/build/Release/
+
+# HomeBrew
+export PATH=$PATH:/home/seunghun/.local/bin/
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/
+
+# Java
+export PATH=$PATH:/usr/java/jre1.8.0_212/bin
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/seunghun/.oh-my-zsh"
+export ZSH="/home/seunghun/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -113,8 +123,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias recmake="rm -rf CMakeFiles CMakeCache.txt cmake_install.cmake; cmake CMakeLists.txt"
-alias hyupsoscp="scp -r ~/Documents/A20_hyupso/* root@192.168.0.32:~/work/HyupSo_Node"
+alias cmakegen="cp ~/Templates/CMakeListsTemplate ./CMakeLists.txt"
+alias apt="sudo apt"
+alias sv="ssh shkim@192.168.0.133"
+alias minicom="sudo minicom"
+
 # alias zshbackup="pushd; cd ~/Documents/MyLinuxPreferences/; git pull; git add linux-zshrc; git commit -m "Linux .zshrc autobackup at ${now}"; git push; popd"
+
