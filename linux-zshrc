@@ -1,15 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME:/bin:/sbin:/usr/local/bin/:/usr/include/
-
-# ST-Link Utility
-export PATH=$PATH:/home/seunghun/stlink/build/Release/
-
-# HomeBrew
-export PATH=$PATH:/home/seunghun/.local/bin/
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/
-
-# Java
-export PATH=$PATH:/usr/java/jre1.8.0_212/bin
+export PATH=$PATH:$HOME/bin:/usr/local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/seunghun/.oh-my-zsh"
@@ -18,24 +15,8 @@ export ZSH="/home/seunghun/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_MODE='nerdfont-complete'
 
-POWERLEVEL9K_BATTERY_LEVEL_FOREGROUND=(white white white white black black black black white white white)
-POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(red1 orangered1 darkorange orange1 gold1 yellow1 yellow2 greenyellow chartreuse1 chartreuse2 green1)
-
-POWERLEVEL9K_OS_ICON_BACKGROUND='orangered1'
-POWERLEVEL9K_SSH_ICON="\uF0AC"  # Globe
-#POWERLEVEL9K_SSH_ICON="\uF1EB"  # WiFi
-POWERLEVEL9K_HOST_ICON="\uF5FC"
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs battery)
-
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
-
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -48,7 +29,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -63,10 +44,10 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -79,7 +60,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd/mm/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -91,6 +72,8 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  vscode
+  catimg
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -102,14 +85,14 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_GB.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -127,9 +110,15 @@ alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias recmake="rm -rf CMakeFiles CMakeCache.txt cmake_install.cmake; cmake CMakeLists.txt"
 alias cmakegen="cp ~/Templates/CMakeListsTemplate ./CMakeLists.txt"
-alias apt="sudo apt"
-alias sv="ssh shkim@192.168.0.133"
+alias sv="ssh shkim@infoworks-server.local"
 alias minicom="sudo minicom"
+alias vi="vim"
+alias dls="ssh shkim@info-dls.local"
+alias ubu="ssh parallels@seunghun-mbp-ubuntu.local"
+alias ssh-key-reset="ssh-keygen -f \"/Users/seunghun/.ssh/known_hosts\" -R"
 
-# alias zshbackup="pushd; cd ~/Documents/MyLinuxPreferences/; git pull; git add linux-zshrc; git commit -m "Linux .zshrc autobackup at ${now}"; git push; popd"
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
